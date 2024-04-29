@@ -19,10 +19,10 @@ require_once("conf/conf.php");
           require_once("conf/conf.php");
           if ($userType == UserType::Lecturer) {
             $userDb = 'lecturers';
-            $redirectPage = 'studentHome.php';
+            $redirectPage = 'lecturerHome.php';
           } else if ($userType == UserType::Student) {
             $userDb = 'students';
-            $redirectPage = 'lecturerHome.php';
+            $redirectPage = 'studentHome.php';
           }
 
 
@@ -104,7 +104,7 @@ require_once("conf/conf.php");
                   </div>
 
                   <div class="text-center pt-1 mb-5 pb-1">
-                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Log
+                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log
                       in</button>
                   </div>
 

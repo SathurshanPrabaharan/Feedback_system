@@ -7,4 +7,10 @@
         const Student = "STUDENT";
     }
 
+    class Status {
+        const PENDING = "PENDING";
+        const APPROVED = "APPROVED";
+        const REJECTED = "REJECTED";
+    }
+
 ?>
