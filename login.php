@@ -1,4 +1,5 @@
 <?php
+require_once "utils/constants.php";
 ob_start(); // Start output buffering
 session_start();
 
@@ -7,6 +8,54 @@ include "./templates/header.php";
 require_once("conf/conf.php");
 
 ?>
+
+<?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+          $userEmail = $_POST['email'];
+          $password = $_POST['password'];
+          $userType = $_POST['user_type'];
+
+
+          require_once("conf/conf.php");
+          if ($userType == UserType::Lecturer) {
+            $userDb = 'lecturers';
+            $redirectPage = 'studentHome.php';
+          } else if ($userType == UserType::Student) {
+            $userDb = 'students';
+            $redirectPage = 'lecturerHome.php';
+          }
+
+
+          $sql = "SELECT * FROM " . $userDb . " WHERE email='$userEmail'";
+          $result = mysqli_query($conn, $sql);
+          $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+          $userId = $user['id'];
+
+          //check success loggedin
+          if ($user && password_verify($password, $user['password'])) {
+
+            // Valid credentials - set up the session
+            $_SESSION['userType'] = $userType;
+            $_SESSION['userEmail'] = $userEmail;
+            $_SESSION['userId'] = $userId;
+            $_SESSION['loggedin'] = true;
+
+
+
+            // Redirect to a logged-in page
+            header("Location: " . $redirectPage);
+            exit();
+          } else {
+            if (!$user) {
+              echo "<div class='alert alert-danger'>User does not exists!</div>";
+            } else {
+              echo "<div class='alert alert-danger'>Wrong password!</div>";
+            }
+          }
+        }
+
+
+        ?>
 
 <!--log in-->
 <section class="h-100 gradient-form" style="background-color: #eee;">
@@ -24,31 +73,32 @@ require_once("conf/conf.php");
                   <h4 class="mt-1 mb-5 pb-1 pt-4">Student Feedback Management</h4>
                 </div>
 
-                <form>
+                <!-- form -->
+                <form id="login-form" action="login.php" method="POST">
                   <p>Please login to your account</p>
 
                   <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="email" id="email" class="form-control"
+                    <input type="email" id="email" name="email" class="form-control"
                       placeholder="Email address" />
                   </div>
 
                   <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="password" id="password" class="form-control" 
+                    <input type="password" id="password" name="password" class="form-control" 
                         placeholder="Password"/>
                   </div>
 
                   <!-- Radio box for selecting user type -->
                   <div class="text-center mb-4">
                   <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="userType" id="studentRadio" value="student" checked>
+                      <input class="form-check-input" type="radio" name="user_type" id="studentRadio" value="STUDENT" checked>
                       <label class="form-check-label" for="studentRadio">
                         Student
                       </label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="userType" id="lectureRadio" value="lecture">
+                      <input class="form-check-input" type="radio" name="user_type" id="lectureRadio" value="LECTURER">
                       <label class="form-check-label" for="lectureRadio">
-                        Lecture
+                        Lecturer
                       </label>
                     </div>
                   </div>
