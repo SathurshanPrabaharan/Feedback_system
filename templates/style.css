@@ -1,0 +1,172 @@
+ /* Header Styles */
+ .header {
+   background-color: #807a79;
+   border: solid black;
+   position: relative;
+ }
+
+ .container-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+ }
+
+ .header .row-left {
+   background-color: #ff7236  ;
+   border: solid #ffffff;
+   border-radius: 20vh;
+   padding: 1px 3% 1px 1px;
+   margin: 3px;
+ }
+
+ .header .row-right {
+   margin-top: 5%;
+ }
+
+ /* Body Styles */
+ body {
+   font-family: 'Poppins';
+   position: relative;
+   background-color: white;
+ }
+
+ /* Login Styles */
+ .box-area {
+   width: 1000px;
+   height: auto;
+   border: 2px solid #FF7F50   ;
+   margin-top: 50px;
+ }
+
+ .login {
+   background-color: #D9D9D9;
+ }
+
+ .user-type-one {
+   font-family: 'Courier New', Courier, monospace;
+   font-weight: 700;
+ }
+
+ .row {
+   justify-content: space-between;
+ }
+
+ .form-group {
+   margin-bottom: 20px;
+ }
+
+ #admin-login-form {
+   display: none;
+ }
+
+ #btn-toggle {
+   margin-bottom: 10px;
+ }
+
+ #btn-toggle .toggle {
+   width: 80px;
+   height: 34px;
+   appearance: none;
+   background-color: #e6e6e6;
+   border-radius: 17px;
+   position: relative;
+   cursor: pointer;
+   transition: background-color 0.3s;
+ }
+
+ #btn-toggle .toggle:before {
+   content: '';
+   position: absolute;
+   width: 50%;
+   height: 100%;
+   background-color: #ffffff;
+   border-radius: 50%;
+   left: 0;
+   transition: transform 0.3s;
+ }
+
+ #btn-toggle .toggle:checked:before {
+   transform: translateX(100%);
+ }
+
+ #btn-toggle .toggle-handle {
+   top: 1px;
+   left: 1px;
+   background-size: 55%;
+   border-radius: 50%;
+   position: relative;
+   z-index: 1;
+   background-color: #ffffff;
+   transition: background-color 0.3s;
+ }
+
+ #btn-toggle .toggle:checked .toggle-handle {
+   background-color: #4CAF50;
+ }
+
+ @media (max-width: 576px) {
+
+   /* Adjust spacing for small screens */
+   .box-area {
+     margin: 10px 1px 0 1px;
+   }
+
+   .header .row-left {
+     padding: auto;
+   }
+
+   .logo-uov {
+     width: 400px;
+     height: auto;
+
+   }
+
+ }
+
+
+ /* Body Styles */
+ body {
+   font-family: 'Poppins';
+   position: relative;
+   background-color: rgb(245, 240, 240);
+ }
+
+ body {
+   font-family: 'Poppins';
+ }
+
+
+
+ .form-group {
+   margin-bottom: 20px;
+ }
+
+ .error-message {
+   color: #dc3545;
+   margin-top: 5px;
+ }
+
+ #registration-form {
+   border: 2px solid #666666 ;
+   padding: 100px;
+   background-color: #666666 ;
+   color: white;
+   max-width: 600px;
+   justify-content: center;
+
+ }
+
+ /*nav bar style */
+ .nav-link {
+   color: #FF6000;
+   transition: color 0.3s;
+   margin-left: 10PX;
+
+
+ }
+
+ .nav-tabs {
+   margin-top: 5PX;
+   margin-left: 20PX;
+   margin-right: 20PX;
+ }
