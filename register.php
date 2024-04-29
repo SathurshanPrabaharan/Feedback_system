@@ -27,6 +27,55 @@ require_once("conf/conf.php");
                 <form>
                   <p>Please login to your account</p>
 
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div data-mdb-input-init class="form-outline">
+                            <input type="text" id="first_name" class="form-control" placeholder="First name" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div data-mdb-input-init class="form-outline">
+                            <input type="text" id="last_name" class="form-control" placeholder="Last name"/>
+                        </div>
+                    </div>
+                   </div>
+
+                   <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div data-mdb-input-init class="form-outline">
+                            <input type="text" id="user_name" class="form-control" placeholder="User name" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div data-mdb-input-init class="form-outline">
+                            <input type="text" id="reg_no" class="form-control" placeholder="Registration Number"/>
+                        </div>
+                    </div>
+                   </div>
+
+                   <div class="row">
+    <div class="col-md-6 mb-4">
+        <div data-mdb-input-init class="form-outline">
+            <label for="dob" class="form-label">Date of Birth</label>
+            <input type="date" id="dob" class="form-control" />
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div data-mdb-input-init class="form-outline">
+            <label for="batch" class="form-label">Select Batch</label>
+            <select id="batch" class="form-select">
+                <option selected disabled>Select Batch</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+    </div>
+</div>
+
+
+
                   <div data-mdb-input-init class="form-outline mb-4">
                     <input type="email" id="form2Example11" class="form-control"
                       placeholder="Email address" />

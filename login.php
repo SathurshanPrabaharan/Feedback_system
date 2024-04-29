@@ -28,12 +28,12 @@ require_once("conf/conf.php");
                   <p>Please login to your account</p>
 
                   <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="email" id="form2Example11" class="form-control"
+                    <input type="email" id="email" class="form-control"
                       placeholder="Email address" />
                   </div>
 
                   <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="password" id="form2Example22" class="form-control" 
+                    <input type="password" id="password" class="form-control" 
                         placeholder="Password"/>
                   </div>
 
