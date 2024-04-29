@@ -4,27 +4,30 @@ USE feedbackSystem;
 
 CREATE TABLE IF NOT EXISTS students (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    registrationNo VARCHAR(20) UNIQUE NOT NULL,
-    username VARCHAR(50) UNIQUE NOT NULL,
+    reg_no VARCHAR(20) UNIQUE NOT NULL,
+    user_name VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL,
-    firstname VARCHAR(50) NOT NULL,
-    lastname VARCHAR(50) NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
     age INT,
     batch VARCHAR(20),
     academic_year VARCHAR(10),
-    date_of_birth DATE
+    dob DATE,
+    email VARCHAR(100),
+    Status VARCHAR(10) DEFAULT 'PENDING' CHECK(Status IN ('PENDING', 'APPROVE', 'REJECT'))
 );
 
-CREATE TABLE IF NOT EXISTS lecturers (
+CREATE TABLE IF NOT EXISTS lectures (
     lecture_id INT AUTO_INCREMENT PRIMARY KEY,
     lecture_name VARCHAR(100) NOT NULL,
     lecturer_name VARCHAR(100) NOT NULL,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
-    username VARCHAR(50),
+     username VARCHAR(50),
     course VARCHAR(100),
     department VARCHAR(100),
-    outlook_address VARCHAR(255)
+    outlook_address VARCHAR(255),
+    email VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS student_lectures (
@@ -32,36 +35,39 @@ CREATE TABLE IF NOT EXISTS student_lectures (
     lecture_id INT,
     PRIMARY KEY (student_id, lecture_id),
     FOREIGN KEY (student_id) REFERENCES students(id),
-    FOREIGN KEY (lecture_id) REFERENCES Lecture(lecture_id)
+    FOREIGN KEY (lecture_id) REFERENCES lectures(lecture_id)
 );
 
-CREATE TABLE IF NOT EXISTS Course (
+CREATE TABLE IF NOT EXISTS course (
     department VARCHAR(100),
-    course_id INT PRIMARY KEY,
+    course_id INT AUTO_INCREMENT PRIMARY KEY,
     course_name VARCHAR(255),
     course_code VARCHAR(50),
     semester VARCHAR(50),
     credits INT
 );
 
-CREATE TABLE IF NOT EXISTS LectureFeedback (
+CREATE TABLE IF NOT EXISTS lecture_Feedback (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    lecture_name VARCHAR(255),
+    lecture_id INT,
     course VARCHAR(100),
+    lecture_name VARCHAR(255),
     question VARCHAR(255),
     feedback VARCHAR(1000),
-    level INT
+    level INT,
+    FOREIGN KEY (lecture_id) REFERENCES lectures(lecture_id)
 );
 
-CREATE TABLE IF NOT EXISTS CourseFeedback (
+CREATE TABLE IF NOT EXISTS courseFeedback (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    Feedback_level VARCHAR(50),
-    Question VARCHAR(255),
-    CourseCode VARCHAR(20),
-    CourseName VARCHAR(100)
+    feedback_level VARCHAR(50),
+    question VARCHAR(255),
+    course_id INT,
+     course_name VARCHAR(255),
+    FOREIGN KEY (course_id) REFERENCES course(course_id)
 );
 
-CREATE TABLE IF NOT EXISTS ManagementAssistant (
+CREATE TABLE IF NOT EXISTS managementAssistant (
     id INT AUTO_INCREMENT PRIMARY KEY,
     UserName VARCHAR(50),
     Password VARCHAR(50),
@@ -75,29 +81,29 @@ CREATE TABLE IF NOT EXISTS feedback (
     course_id INT,
     feedback_date DATE,
     feedback_time TIME,
-    FOREIGN KEY (management_id) REFERENCES ManagementAssistant(id),
-    FOREIGN KEY (course_id) REFERENCES Course(course_id)
+    FOREIGN KEY (management_id) REFERENCES managementAssistant(id),
+    FOREIGN KEY (course_id) REFERENCES course(course_id)
 );
 
-CREATE TABLE IF NOT EXISTS LectureCourse (
+CREATE TABLE IF NOT EXISTS lectureCourse (
     lecture_id INT,
     course_id INT,
     PRIMARY KEY (lecture_id, course_id),
-    FOREIGN KEY (lecture_id) REFERENCES Lecture(lecture_id),
-    FOREIGN KEY (course_id) REFERENCES Course(course_id)
+    FOREIGN KEY (lecture_id) REFERENCES lectures(lecture_id),
+    FOREIGN KEY (course_id) REFERENCES course(course_id)
 );
 
-CREATE TABLE IF NOT EXISTS StudentCourse (
-    Student_ID INT,
-    Course_ID INT,
-    PRIMARY KEY (Student_ID, Course_ID),
-    FOREIGN KEY (Student_ID) REFERENCES students(id),
-    FOREIGN KEY (Course_ID) REFERENCES Course(course_id)
+CREATE TABLE IF NOT EXISTS studentCourse (
+    student_id INT,
+    course_id INT,
+    PRIMARY KEY (student_id, course_id),
+    FOREIGN KEY (student_id) REFERENCES students(id),
+    FOREIGN KEY (course_id) REFERENCES course(course_id)
 );
 
-CREATE TABLE IF NOT EXISTS StudentAddress (
-    Student_ID INT,
-    Address VARCHAR(255),
-    PRIMARY KEY (Student_ID),
-    FOREIGN KEY (Student_ID) REFERENCES students(id)
+CREATE TABLE IF NOT EXISTS studentAddress (
+    student_id INT,
+    address VARCHAR(255),
+    PRIMARY KEY (student_id),
+    FOREIGN KEY (student_id) REFERENCES students(id)
 );

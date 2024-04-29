@@ -2,7 +2,7 @@
         define ('HOST','localhost');
         define ('USERNAME','root');
         define ('PW','');
-        define ('DB','feedback');
+        define ('DB','feedbackSystem');
 
         $conn = mysqli_connect (HOST,USERNAME,PW,DB);
 
